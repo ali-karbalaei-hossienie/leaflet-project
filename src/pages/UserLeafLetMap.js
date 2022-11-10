@@ -1,6 +1,6 @@
 import Leaflet from "../components/Leaflet";
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const UserLeafLetMap = () => {
   const [location, setLocation] = useState({
@@ -12,14 +12,23 @@ const UserLeafLetMap = () => {
   const [inputValue, setInputValue] = useState({
     Address: "",
     phoneNumber: "",
+    latitude: "",
+    longitude: "",
   });
 
   const changeHandler = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e, value) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(location.coordinates.lat);
+    setInputValue({
+      ...inputValue,
+      latitude: location.coordinates.lat,
+      longitude: location.coordinates.lng,
+    });
+    console.log(inputValue);
   };
   const onSuccess = (position) => {
     setLocation({

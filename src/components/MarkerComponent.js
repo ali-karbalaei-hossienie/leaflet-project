@@ -1,7 +1,6 @@
 import { Popup, Marker } from "react-leaflet";
 
 const MarkerComponent = ({ position }) => {
-  console.log(position);
   return (
     <Marker position={position}>
       <Popup>
