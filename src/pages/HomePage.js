@@ -1,29 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Layout from "../Layout/Layout";
+import axios, { Axios } from "axios";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const HomePage = ({ formValue }) => {
-  const [products, setproducts] = useState([]);
-  console.log(products);
+const HomePage = ({ products, setproducts }) => {
+
   useEffect(() => {
-    if (formValue) {
-      axios
-        .post("http://localhost:3000/products", formValue)
-        .then((resp) => {
-          // setproducts(resp.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-    axios
-      .get("http://localhost:3000/products")
-      .then((resp) => {
+    if (products) {
+      axios.get("http://localhost:3000/products").then((resp) => {
         setproducts(resp.data);
-      })
-      .catch((error) => {
-        console.log(error);
       });
+    }
   }, []);
 
   return (
@@ -36,7 +22,9 @@ const HomePage = ({ formValue }) => {
                 className="flex flex-col justify-center items-center"
               >
                 <div className="bg-white w-full p-4 mt-4 text-center rounded-xl">
-                  {product.Address}
+                  <NavLink to={`RegisterUserLeaflet/${product.id}`}>
+                    {product.Address}
+                  </NavLink>
                 </div>
               </div>
             );
@@ -46,4 +34,4 @@ const HomePage = ({ formValue }) => {
   );
 };
 
-export default HomePage;
+export default React.memo(HomePage);

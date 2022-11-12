@@ -3,7 +3,7 @@ const Input = ({ label, name, type = "text", formik }) => {
     <div className="w-full mb-5">
       <label className="mb-2 block font-bold tex-lg">{label}</label>
       <input
-        className="p-4 bg-white rounded-xl flex flex-col w-full border-2 border-solid border-slate-300 focus:outline-0  focus:border-violet-700"
+        className="p-2 bg-white rounded-xl flex flex-col w-full border-2 border-solid border-slate-300 focus:outline-0  focus:border-violet-700"
         type={type}
         {...formik.getFieldProps({ name })}
         name={name}

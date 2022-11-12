@@ -41,7 +41,6 @@ const Navigation = () => {
                     ? "h-full p-2 w-full block bg-white  hover:bg-white"
                     : "hover:bg-white p-2  "
                 }
-                // className="h-full p-2 w-full block  hover:bg-white"
                 to={`${data ? "/" : "/login"}`}
               >
                 {data ? "پروفایل کاربر" : "ورود"}
@@ -58,7 +57,6 @@ const Navigation = () => {
                     ? " p-2 w-full block bg-white  hover:bg-white"
                     : "hover:bg-white p-2"
                 }
-                // className="h-full p-2 w-full block  hover:bg-white"
                 to="/signup"
               >
                 ثبت نام

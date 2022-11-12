@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ShowMapLeaflet from "./ShowMapLeaflet";
 
-const LoadingMap = ({ coordinate, setCordinate }) => {
+const LoadingMap = ({ coordinate, setCordinate, isOpenDelete }) => {
   const [location, setLocation] = useState({
     loading: true,
     error: null,
@@ -34,6 +34,7 @@ const LoadingMap = ({ coordinate, setCordinate }) => {
         location={location}
         setCordinate={setCordinate}
         coordinate={coordinate}
+        isOpenDelete={isOpenDelete}
       />
     </>
   );
