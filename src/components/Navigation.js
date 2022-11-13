@@ -5,62 +5,28 @@ const Navigation = () => {
   const data = useAuth();
   return (
     <header>
-      <nav className="w-full h-14 bg-violet-100 flex items-center justify-center">
-        <ul className="flex  w-full max-w-screen-md  items-center justify-between   ">
+      <nav className="w-full h-14 bg-white flex items-center justify-center">
+        <ul className="flex   w-full max-w-screen-lg  items-center justify-between   ">
           <div className="flex items-center cursor-pointer">
-            <li className="mr-2  rounded hover:text-purple-700">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "p-2  bg-white  hover:bg-white"
-                    : "hover:bg-white p-2  "
-                }
-                to="/"
-              >
-                خانه
-              </NavLink>
+            <li className="mr-4  rounded hover:text-purple-700">
+              <NavLink to="/">خانه</NavLink>
             </li>
-            <li className="mr-2  rounded hover:text-purple-700">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "p-2  bg-white  hover:bg-white"
-                    : "hover:bg-white p-2  "
-                }
-                to="/userLeafLetMap"
-              >
-                ثبت آگهی
-              </NavLink>
+            <li className="mr-4  rounded hover:text-purple-700">
+              <NavLink to="/userLeafLetMap">ثبت آگهی</NavLink>
             </li>
           </div>
           <div className="flex items-center cursor-pointer">
-            <li className="mr-2 block rounded hover:text-purple-700 hover:bg-white ">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "h-full p-2 w-full block bg-white  hover:bg-white"
-                    : "hover:bg-white p-2  "
-                }
-                to={`${data ? "/" : "/login"}`}
-              >
+            <li className="mr-4 block rounded hover:text-purple-700 hover:bg-white ">
+              <NavLink to={`${data ? "/" : "/login"}`}>
                 {data ? "پروفایل کاربر" : "ورود"}
               </NavLink>
             </li>
             <li
-              className={`mr-2 rounded hover:text-purple-700 hover:bg-white ${
+              className={`mr-4 rounded hover:text-purple-700 hover:bg-white ${
                 data && "hidden"
               }`}
             >
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? " p-2 w-full block bg-white  hover:bg-white"
-                    : "hover:bg-white p-2"
-                }
-                to="/signup"
-              >
-                ثبت نام
-              </NavLink>
+              <NavLink to="/signup">ثبت نام</NavLink>
             </li>
           </div>
         </ul>

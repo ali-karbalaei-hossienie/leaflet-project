@@ -50,11 +50,11 @@ const Signup = () => {
       localStorage.setItem("authState", JSON.stringify(data));
       setError(null);
       Navigate({ pathname: "/" });
-      toast.success("Registration was successful");
+      toast.success(" ثبت نام با موفقیت انجام شد ");
       setAuth(data);
     } catch (error) {
       setError(error.response.data.message);
-      toast.error("Registration failed");
+      toast.error("ثبت نام با خطا مواجه شد");
     }
   };
 
@@ -68,19 +68,39 @@ const Signup = () => {
   return (
     <div className="container px-4 mx-auto xl:max-w-screen-md">
       <form className=" flex flex-col  my-20" onSubmit={formik.handleSubmit}>
-        <Input name="name" formik={formik} label="Name" />
-        <Input name="email" formik={formik} label="email" />
+        <Input
+          name="name"
+          formik={formik}
+          label="نام و نام خانوادگی"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          onBlur={formik.handleBlur}
+        />
+        <Input
+          name="email"
+          formik={formik}
+          label=" ایمیل"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+        />
         <Input
           name="password"
           formik={formik}
-          label="password"
+          label="رمز عبور"
           type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          onBlur={formik.handleBlur}
         />
         <Input
           name="passwordConfirm"
           formik={formik}
-          label="passwordConfirm"
+          label="تکرار رمز عبور"
           type="password"
+          onChange={formik.handleChange}
+          value={formik.values.passwordConfirm}
+          onBlur={formik.handleBlur}
         />
         <div className="flex flex-col justify-start items-start">
           <button
@@ -92,7 +112,9 @@ const Signup = () => {
           </button>
           {error && <p className="text-red-700">error is: {error}</p>}
           <Link to="/login">
-            <p className="mt-3.5">Already Login?</p>
+            <p className="mt-3.5 bg-purple-200 p-2 inline-block">
+              قبلا ثبت نام کرده اید ؟
+            </p>
           </Link>
         </div>
       </form>

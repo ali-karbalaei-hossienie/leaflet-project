@@ -1,19 +1,26 @@
-import Leaflet from "../components/ShowMapLeaflet";
-import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingMap from "../components/LoadingMap";
 import LeafletForm from "../components/LeafletForm";
-import { useCoords } from "../context/CoordinatesProvider";
+import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-const RegisterUserLeaflet = ({  setproducts }) => {
+const RegisterUserLeaflet = ({ setproducts }) => {
   const [coordinate, setCordinate] = useState();
+  const navigate = useNavigate();
+  const Auth = useAuth();
+
+  useEffect(() => {
+    if (!Auth) {
+      navigate("/login");
+    }
+  });
 
   return (
-    <div className="flex ">
-      <div className=" w-1/3 h-screen  bg-slate-500 text-white ">
+    <div className="flex flex-col sm:flex-row   ">
+      <div className=" w-full h-screen sm:w-1/3   bg-slate-500 text-white ">
         <LeafletForm coordinate={coordinate} setproducts={setproducts} />
       </div>
-      <div className=" w-2/3 h-screen ">
+      <div className=" w-full h-screen sm:w-2/3 sm:h-screen ">
         <LoadingMap coordinate={coordinate} setCordinate={setCordinate} />
       </div>
     </div>

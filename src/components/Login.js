@@ -54,16 +54,28 @@ const Login = () => {
     enableReinitialize: true,
   });
 
+  console.log(formik.values);
+
   return (
     <div className="container px-4 md:px-0 mx-auto xl:max-w-screen-md">
       <form className=" flex flex-col  my-20" onSubmit={formik.handleSubmit}>
-        <Input name="email" formik={formik} label="email" />
+        <Input
+          name="email"
+          formik={formik}
+          label="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+        />
 
         <Input
           name="password"
           formik={formik}
           label="password"
           type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          onBlur={formik.handleBlur}
         />
 
         <div className="formControl">
@@ -77,7 +89,9 @@ const Login = () => {
           {error && <p className="text-red-700 ">error is: {error}</p>}
 
           <Link to="/signup">
-            <p className="mt-3.5">Not Signup Yet?</p>
+            <p className="mt-3.5 bg-purple-200 p-2 inline-block">
+              هنوز ثبت نام نکرده اید؟
+            </p>
           </Link>
         </div>
       </form>
