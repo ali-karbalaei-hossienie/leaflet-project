@@ -47,11 +47,10 @@ const Signup = () => {
         "http://localhost:8000/auth/register",
         datauser
       );
-      localStorage.setItem("authState", JSON.stringify(data));
+      setAuth(data);
       setError(null);
       Navigate({ pathname: "/" });
       toast.success(" ثبت نام با موفقیت انجام شد ");
-      setAuth(data);
     } catch (error) {
       setError(error.response.data.message);
       toast.error("ثبت نام با خطا مواجه شد");

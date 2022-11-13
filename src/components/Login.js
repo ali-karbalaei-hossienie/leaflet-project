@@ -36,11 +36,10 @@ const Login = () => {
         "http://localhost:8000/auth/login",
         datauser
       );
-      localStorage.setItem("authState", JSON.stringify(data));
-      setError(null);
-      Navigate({ pathname: "/" });
-      toast.success("Registration was successful");
       setAuth(data);
+      setError(null);
+      Navigate("/");
+      toast.success("Registration was successful");
     } catch (error) {
       setError(error.response.data.message);
       toast.error("Registration failed");
@@ -54,15 +53,13 @@ const Login = () => {
     enableReinitialize: true,
   });
 
-  console.log(formik.values);
-
   return (
     <div className="container px-4 md:px-0 mx-auto xl:max-w-screen-md">
       <form className=" flex flex-col  my-20" onSubmit={formik.handleSubmit}>
         <Input
           name="email"
           formik={formik}
-          label="email"
+          label="ایمیل"
           onChange={formik.handleChange}
           value={formik.values.email}
           onBlur={formik.handleBlur}
@@ -71,7 +68,7 @@ const Login = () => {
         <Input
           name="password"
           formik={formik}
-          label="password"
+          label="رمز عبور"
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
@@ -80,7 +77,7 @@ const Login = () => {
 
         <div className="formControl">
           <button
-            className="bg-purple-700 rounded-lg text-white px-4 py-2 flex  cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black "
+            className="bg-purple-700 rounded-lg dark:bg-slate-200   px-4 py-2 flex  cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:text-black "
             type="submit"
             disabled={!formik.isValid}
           >
@@ -89,7 +86,7 @@ const Login = () => {
           {error && <p className="text-red-700 ">error is: {error}</p>}
 
           <Link to="/signup">
-            <p className="mt-3.5 bg-purple-200 p-2 inline-block">
+            <p className="mt-3.5 bg-purple-200 dark:bg-slate-400 p-2 inline-block">
               هنوز ثبت نام نکرده اید؟
             </p>
           </Link>

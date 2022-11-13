@@ -3,31 +3,26 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LeafletForm from "../components/LeafletForm";
 import LoadingMap from "../components/LoadingMap";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const RegisterUserLeafletId = () => {
-  const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const [coordinate, setCordinate] = useState();
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-
-  const Auth = useAuth();
+  const navigate = useNavigate();
 
   let { id } = useParams();
 
-  const DeleteHandler = (e) => {
+  const DeleteHandler = async (e) => {
     e.preventDefault();
-    axios
-      .delete(`http://localhost:3000/products/${userId.id}`)
-      .then((resp) => {
-        toast.success("حذف کاربری شما با موفقیت انجام شد");
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error("در خواست شما با خطا انجام شد");
-      });
+    try {
+      await axios.delete(`http://localhost:3000/products/${userId.id}`);
+      toast.success("حذف کاربری شما با موفقیت انجام شد");
+      navigate("/");
+    } catch (error) {
+      toast.error("در خواست شما با خطا انجام شد");
+    }
   };
 
   const confirmDeleteHandler = (e) => {
@@ -36,7 +31,8 @@ const RegisterUserLeafletId = () => {
   };
 
   useEffect(() => {
-    if (!Auth) {
+    const data = JSON.parse(localStorage.getItem("authState"));
+    if (!data) {
       navigate("/login");
     }
     axios

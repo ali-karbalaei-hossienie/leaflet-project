@@ -10,9 +10,11 @@ const Input = ({
 }) => {
   return (
     <div className="w-full mb-5">
-      <label className="mb-2 block font-bold tex-lg">{label}</label>
+      <label className="mb-2 dark:text-slate-400 block font-bold tex-lg">
+        {label}
+      </label>
       <input
-        className="p-2 text-slate-700 bg-white rounded-xl flex flex-col w-full border-2 border-solid border-slate-300 focus:outline-0  focus:border-violet-700"
+        className="p-2 dark:text-white text-slate-700 bg-white dark:bg-slate-700 rounded-xl flex flex-col w-full border-2 border-solid border-slate-300 dark:border-slate-600 focus:outline-0  focus:border-violet-700 dark:focus:border-white"
         type={type}
         name={name}
         placeholder={placeholder}

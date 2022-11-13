@@ -5,9 +5,13 @@ export const AuthContextDispatcher = createContext();
 const AuthProvider = ({ children }) => {
   const [Auth, setAuth] = useState(null);
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("authState"));
+    const data = JSON.parse(localStorage.getItem("authState")) || false;
     setAuth(data);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("authState", JSON.stringify(Auth));
+  }, [Auth]);
 
   return (
     <div>

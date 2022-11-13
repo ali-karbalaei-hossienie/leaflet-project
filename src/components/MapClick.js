@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useMap } from "react-leaflet";
-import { useCoords, useCoordsActions } from "../context/CoordinatesProvider";
 import MarkerComponent from "./MarkerComponent";
 
 const MapClick = ({ coordinate, setCordinate }) => {

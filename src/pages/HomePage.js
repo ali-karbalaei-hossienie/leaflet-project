@@ -35,9 +35,9 @@ const HomePage = ({ products, setproducts }) => {
                 key={product.id}
                 className="flex flex-col justify-center items-center"
               >
-                <div className="bg-white shadow-xl w-full p-4 mt-4 text-center rounded-xl">
+                <div className="bg-white dark:bg-gray-600  shadow-xl w-full p-4 mt-4 text-center rounded-xl">
                   <NavLink
-                    className=" block w-full hover:text-purple-700"
+                    className=" block w-full hover:text-purple-700 dark:hover:text-slate-300"
                     to={`RegisterUserLeaflet/${product.id}`}
                   >
                     {product.Address}
@@ -64,11 +64,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     pageNumber.push(i);
   }
   return (
-    <div className="flex  mt-3">
+    <div className="flex mt-3">
       {pageNumber.map((number) => {
         return (
           <div
-            className="border border-solid border-slate-400 px-2 bg-white "
+            className="border border-solid border-slate-400 px-2 bg-white dark:bg-slate-600 dark:text-white"
             key={number}
           >
             <a onClick={() => paginate(number)} href="#">

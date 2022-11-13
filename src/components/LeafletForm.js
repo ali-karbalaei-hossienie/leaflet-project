@@ -35,38 +35,30 @@ const LeafletForm = ({
     }
   }, [userId]);
 
-  const submitHandler = (values) => {
-    axios
-      .post("http://localhost:3000/products", values)
-      .then((resp) => {
-        axios
-          .get("http://localhost:3000/products")
-          .then((resp) => {
-            setproducts(resp.data);
-            toast.success("ثبت آدرس شما با موفقیت انجام شد");
-            navigate("/");
-          })
-          .catch((error) => {
-            toast.error("در خواست شما با خطا انجام شد");
-          });
-      })
-      .catch((error) => {
-        toast.error("در خواست شما با خطا انجام شد");
-      });
-    navigate("/");
+  const submitHandler = async (values) => {
+    try {
+      await axios.post("http://localhost:3000/products", values);
+      const { data } = await axios.get("http://localhost:3000/products");
+      setproducts(data);
+      toast.success("ثبت آدرس شما با موفقیت انجام شد");
+      navigate("/");
+    } catch (error) {
+      toast.error("در خواست شما با خطا انجام شد");
+    }
   };
 
-  const onEditFormHandler = (e) => {
+  const onEditFormHandler = async (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3000/products/${userId.id}`, formik.values)
-      .then((resp) => {
-        toast.success(" ویرایش  کاربری شما با موفقیت انجام شد");
-      })
-      .catch((error) => {
-        toast.error("در خواست شما با خطا انجام شد");
-      });
-    navigate("/");
+    try {
+      await axios.put(
+        `http://localhost:3000/products/${userId.id}`,
+        formik.values
+      );
+      toast.success(" ویرایش  کاربری شما با موفقیت انجام شد");
+      navigate("/");
+    } catch (error) {
+      toast.error("در خواست شما با خطا انجام شد");
+    }
   };
 
   const initialValues = {
@@ -115,6 +107,7 @@ const LeafletForm = ({
           label="شماره همراه"
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
 
         <Input
@@ -123,6 +116,7 @@ const LeafletForm = ({
           label=" آدرس کاربر"
           value={formik.values.Address}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         {userId ? (
           <div className="flex gap-2">

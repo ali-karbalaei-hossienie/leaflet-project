@@ -11,36 +11,40 @@ import { useState } from "react";
 import RegisterUserLeaflet from "./pages/RegisterUserLeaflet";
 import RegisterUserLeafletId from "./pages/RegisterUserLeafletId";
 import NotFound from "./pages/NotFoundPage";
+import { ThemeProvider } from "./context/ThemeContext";
+
 function App() {
   const [products, setproducts] = useState([]);
 
   return (
-    <div className="bg-gray-100 h-screen overflow-auto">
-      <AuthProvider>
-        <Layout>
-          <ToastContainer />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage setproducts={setproducts} products={products} />
-              }
-            ></Route>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/signup" element={<SignupPage />}></Route>
-            <Route
-              path="/RegisterUserLeaflet"
-              element={<RegisterUserLeaflet setproducts={setproducts} />}
-            ></Route>
-            <Route
-              path="/RegisterUserLeaflet/:id"
-              element={<RegisterUserLeafletId />}
-            ></Route>
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
-        </Layout>
-      </AuthProvider>
-    </div>
+    <ThemeProvider>
+      <body className="dark:bg-slate-900 bg-gray-100  h-screen overflow-auto">
+        <AuthProvider>
+          <Layout>
+            <ToastContainer />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage setproducts={setproducts} products={products} />
+                }
+              ></Route>
+              <Route path="/login" element={<LoginPage />}></Route>
+              <Route path="/signup" element={<SignupPage />}></Route>
+              <Route
+                path="/RegisterUserLeaflet"
+                element={<RegisterUserLeaflet setproducts={setproducts} />}
+              ></Route>
+              <Route
+                path="/RegisterUserLeaflet/:id"
+                element={<RegisterUserLeafletId />}
+              ></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+          </Layout>
+        </AuthProvider>
+      </body>
+    </ThemeProvider>
   );
 }
 
