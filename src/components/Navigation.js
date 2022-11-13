@@ -12,7 +12,7 @@ const Navigation = () => {
               <NavLink to="/">خانه</NavLink>
             </li>
             <li className="mr-4  rounded hover:text-purple-700">
-              <NavLink to="/userLeafLetMap">ثبت آگهی</NavLink>
+              <NavLink to="/RegisterUserLeaflet">ثبت آگهی</NavLink>
             </li>
           </div>
           <div className="flex items-center cursor-pointer">

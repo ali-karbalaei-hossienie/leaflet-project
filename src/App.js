@@ -10,8 +10,8 @@ import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import RegisterUserLeaflet from "./pages/RegisterUserLeaflet";
 import RegisterUserLeafletId from "./pages/RegisterUserLeafletId";
+import NotFound from "./pages/NotFoundPage";
 function App() {
-
   const [products, setproducts] = useState([]);
 
   return (
@@ -29,17 +29,14 @@ function App() {
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/signup" element={<SignupPage />}></Route>
             <Route
-              path="/userLeafLetMap"
-              element={
-                <RegisterUserLeaflet
-                  setproducts={setproducts}
-                />
-              }
+              path="/RegisterUserLeaflet"
+              element={<RegisterUserLeaflet setproducts={setproducts} />}
             ></Route>
             <Route
               path="/RegisterUserLeaflet/:id"
               element={<RegisterUserLeafletId />}
             ></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </Layout>
       </AuthProvider>
