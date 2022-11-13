@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LeafletForm from "../components/LeafletForm";
@@ -35,8 +34,8 @@ const SabteAgahiId = () => {
     if (!data) {
       navigate("/login");
     }
-    axios
-      .get(`http://localhost:3000/products/${id}`)
+    http
+      .get(`/products/${id}`)
       .then((resp) => {
         setUser(resp.data);
         const { latitude, longitude } = resp.data;

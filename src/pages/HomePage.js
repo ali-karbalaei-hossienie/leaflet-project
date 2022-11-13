@@ -1,6 +1,6 @@
-import axios, { Axios } from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import http from "../services/httpService";
 
 const HomePage = ({ products, setproducts }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +20,7 @@ const HomePage = ({ products, setproducts }) => {
 
   useEffect(() => {
     if (products) {
-      axios.get("http://localhost:3000/products").then((resp) => {
+      http.get("http://localhost:3000/products").then((resp) => {
         setproducts(resp.data);
       });
     }
@@ -38,7 +38,7 @@ const HomePage = ({ products, setproducts }) => {
                 <div className="bg-white dark:bg-gray-600  shadow-xl w-full p-4 mt-4 text-center rounded-xl">
                   <NavLink
                     className=" block w-full hover:text-purple-700 dark:hover:text-slate-300"
-                    to={`RegisterUserLeaflet/${product.id}`}
+                    to={`SabteAgahi/${product.id}`}
                   >
                     {product.Address}
                   </NavLink>

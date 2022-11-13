@@ -32,11 +32,11 @@ function App() {
               <Route path="/login" element={<LoginPage />}></Route>
               <Route path="/signup" element={<SignupPage />}></Route>
               <Route
-                path="/RegisterUserLeaflet"
+                path="/SabteAgahi"
                 element={<SabteAgahi setproducts={setproducts} />}
               ></Route>
               <Route
-                path="/RegisterUserLeaflet/:id"
+                path="/SabteAgahi/:id"
                 element={<SabteAgahiId />}
               ></Route>
               <Route path="*" element={<NotFound />}></Route>
