@@ -1,6 +1,5 @@
 import Input from "../common/Input";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,9 +14,9 @@ const initialValues = {
 let validationSchema = yup.object({
   email: yup
     .string()
-    .email("invalid email format")
-    .required("email is required"),
-  password: yup.string().required("password is required"),
+    .email("ایمیل خود را به درستی وارد نمایید")
+    .required("ایمیل خود را وارد نمایید"),
+  password: yup.string().required("رمز عبور خود را وارد نمایید"),
 });
 
 const Login = () => {
@@ -39,10 +38,10 @@ const Login = () => {
       setAuth(data);
       setError(null);
       Navigate("/");
-      toast.success("Registration was successful");
+      toast.success("تبریک! با موفقیت وارد شدید");
     } catch (error) {
       setError(error.response.data.message);
-      toast.error("Registration failed");
+      toast.error("لاگین با خطامواجه شد");
     }
   };
   const formik = useFormik({

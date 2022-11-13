@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Input from "../common/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+import http from "../services/httpService";
 
 const LeafletForm = ({
   coordinate,
-  userId,
+  user,
   confirmDeleteHandler,
   setproducts,
 }) => {
@@ -30,15 +30,15 @@ const LeafletForm = ({
   }, [coordinate]);
 
   useEffect(() => {
-    if (userId) {
-      setInputValue(userId);
+    if (user) {
+      setInputValue(user);
     }
-  }, [userId]);
+  }, [user]);
 
   const submitHandler = async (values) => {
     try {
-      await axios.post("http://localhost:3000/products", values);
-      const { data } = await axios.get("http://localhost:3000/products");
+      await http.post("/products", values);
+      const { data } = await http.get("/products");
       setproducts(data);
       toast.success("ثبت آدرس شما با موفقیت انجام شد");
       navigate("/");
@@ -50,10 +50,7 @@ const LeafletForm = ({
   const onEditFormHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `http://localhost:3000/products/${userId.id}`,
-        formik.values
-      );
+      await http.put(`/products/${user.id}`, formik.values);
       toast.success(" ویرایش  کاربری شما با موفقیت انجام شد");
       navigate("/");
     } catch (error) {
@@ -118,7 +115,7 @@ const LeafletForm = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {userId ? (
+        {user ? (
           <div className="flex gap-2">
             <button
               onClick={onEditFormHandler}

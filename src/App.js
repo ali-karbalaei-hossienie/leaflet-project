@@ -8,17 +8,17 @@ import Layout from "./Layout/Layout";
 import AuthProvider from "./context/AuthProvider";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
-import RegisterUserLeaflet from "./pages/RegisterUserLeaflet";
-import RegisterUserLeafletId from "./pages/RegisterUserLeafletId";
 import NotFound from "./pages/NotFoundPage";
 import { ThemeProvider } from "./context/ThemeContext";
+import SabteAgahi from "./pages/SabteAgahi";
+import SabteAgahiId from "./pages/SabteAgahiId";
 
 function App() {
   const [products, setproducts] = useState([]);
 
   return (
-    <ThemeProvider>
-      <body className="dark:bg-slate-900 bg-gray-100  h-screen overflow-auto">
+    <div className="dark:bg-slate-900 bg-gray-100  h-screen overflow-auto">
+      <ThemeProvider>
         <AuthProvider>
           <Layout>
             <ToastContainer />
@@ -33,18 +33,18 @@ function App() {
               <Route path="/signup" element={<SignupPage />}></Route>
               <Route
                 path="/RegisterUserLeaflet"
-                element={<RegisterUserLeaflet setproducts={setproducts} />}
+                element={<SabteAgahi setproducts={setproducts} />}
               ></Route>
               <Route
                 path="/RegisterUserLeaflet/:id"
-                element={<RegisterUserLeafletId />}
+                element={<SabteAgahiId />}
               ></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </Layout>
         </AuthProvider>
-      </body>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   );
 }
 

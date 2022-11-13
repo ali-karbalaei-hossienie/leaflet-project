@@ -16,17 +16,17 @@ const initialValues = {
 let validationSchema = yup.object({
   name: yup
     .string()
-    .required("Name is required")
-    .min(3, "Name length is not valid"),
+    .required("نام و نام خانوادگی خود را وارد نمایید")
+    .min(3, "حداقل طول نام سه باید باشد"),
   email: yup
-    .string()
-    .email("invalid email format")
-    .required("email is required"),
-  password: yup.string().required("password is required"),
+    .string("ایمیل خود را به درستی وارد نمایید")
+    .email("  ")
+    .required("ایمیل خود را وارد نمایید"),
+  password: yup.string().required("رمز عبور خود را وارد نمایید"),
   passwordConfirm: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("passwordConfirm is required"),
+    .oneOf([yup.ref("password"), null], "رمز عبور شما مطابقت ندارد")
+    .required("تکرار رمز عبور خود را وارد نمایید"),
 });
 
 const Signup = () => {

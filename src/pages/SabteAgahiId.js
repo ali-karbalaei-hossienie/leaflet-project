@@ -2,22 +2,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LeafletForm from "../components/LeafletForm";
-import LoadingMap from "../components/LoadingMap";
+import GeoLocationMap from "../components/GeoLocationMap";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import http from "../services/httpService";
 
-const RegisterUserLeafletId = () => {
-  const [userId, setUserId] = useState();
+const SabteAgahiId = () => {
+  const [user, setUser] = useState();
   const [coordinate, setCordinate] = useState();
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const navigate = useNavigate();
-
   let { id } = useParams();
 
   const DeleteHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(`http://localhost:3000/products/${userId.id}`);
+      await http.delete(`/products/${user.id}`);
       toast.success("حذف کاربری شما با موفقیت انجام شد");
       navigate("/");
     } catch (error) {
@@ -38,7 +38,7 @@ const RegisterUserLeafletId = () => {
     axios
       .get(`http://localhost:3000/products/${id}`)
       .then((resp) => {
-        setUserId(resp.data);
+        setUser(resp.data);
         const { latitude, longitude } = resp.data;
         const coordinateUser = [latitude, longitude];
         setCordinate(coordinateUser);
@@ -51,15 +51,15 @@ const RegisterUserLeafletId = () => {
   return (
     <div className="relative">
       <div className="flex ">
-        <div className=" w-1/3 h-screen  bg-slate-500 text-white ">
+        <div className=" w-1/3 h-screen dark:bg-slate-800  bg-slate-500 text-white ">
           <LeafletForm
-            userId={userId}
+            user={user}
             confirmDeleteHandler={confirmDeleteHandler}
             coordinate={coordinate}
           />
         </div>
         <div className=" w-2/3 h-screen ">
-          <LoadingMap
+          <GeoLocationMap
             coordinate={coordinate}
             setCordinate={setCordinate}
             isOpenDelete={isOpenDelete}
@@ -87,4 +87,4 @@ const RegisterUserLeafletId = () => {
   );
 };
 
-export default RegisterUserLeafletId;
+export default SabteAgahiId;

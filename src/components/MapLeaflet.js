@@ -12,7 +12,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const ShowMapLeaflet = ({
+const MapLeaflet = ({
   location,
   coordinate,
   setCordinate,
@@ -28,7 +28,7 @@ const ShowMapLeaflet = ({
       <div className="flex justify-center items-center h-screen" role="status">
         <svg
           aria-hidden="true"
-          class="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ const ShowMapLeaflet = ({
             fill="currentFill"
           />
         </svg>
-        <span class="sr-only">Loading...</span>
+        <span>Loading...</span>
       </div>
     );
   } else if (error) {
@@ -68,4 +68,4 @@ const ShowMapLeaflet = ({
   );
 };
 
-export default ShowMapLeaflet;
+export default MapLeaflet;
